@@ -1,13 +1,20 @@
 #include <GyverMotor2.h>
 #include <GParser.h>
+#include <Servo.h>
 #include <Arduino.h>
 #include <WiFiUdp.h>
 #include <ESP8266WiFi.h>
+#include <ESPAsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+#include <AsyncElegantOTA.h>
+#include <EEPROM.h>
+
+AsyncWebServer server(80);
 
 //#define MKD_Guest
 #ifdef MKD_Guest
 const char *ssid = "MKD-Guest";
-const char *pswd = "123Qweasd";
+const char *password = "123Qweasd";
 #else
 const char *ssid = "Keenetic-1649";
 const char *password = "jsCMnJpr";
@@ -62,6 +69,12 @@ void setup()
   MOT_Winch.setMinDuty(100); // мин. ШИМ
   MOT_Winch.reverse(1);     // реверс
   MOT_Winch.setDeadtime(1); // deadtime
+
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(200, "text/plain", hostname); });
+
+  AsyncElegantOTA.begin(&server); // Start AsyncElegantOTA
+  server.begin();
  
 }
 
