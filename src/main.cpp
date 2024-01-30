@@ -118,9 +118,12 @@ void loop()
       }
       else if (ints[0] == 0)
       {      
-        MOT_Trolley.setSpeed(map(ints[2], 63, 191, -255, 255));
-        MOT_Bridge.setSpeed(map(ints[3], 63, 191, -255, 255));
-        MOT_Winch.setSpeed(map(ints[4], 63, 191, -255, 255));
+        //MOT_Trolley.setSpeed(map(ints[2], 63, 191, -255, 255));
+        //MOT_Bridge.setSpeed(map(ints[3], 63, 191, -255, 255));
+        //MOT_Winch.setSpeed(map(ints[4], 63, 191, -255, 255));
+        MOT_Trolley.setSpeed(map(ints[2], 0, 255, -255, 255));
+        MOT_Bridge.setSpeed(map(ints[3], 0, 255, -255, 255));
+        MOT_Winch.setSpeed(map(ints[4], 0, 255, -255, 255));
       }
     }
   }
