@@ -14,7 +14,7 @@ AsyncWebServer server(80);
 //#define MKD_Guest
 #ifdef MKD_Guest
 const char *ssid = "MKD-Guest";
-const char *password = "123Qweasd";
+const char *pswd = "123Qweasd";
 #else
 const char *ssid = "Keenetic-1649";
 const char *password = "jsCMnJpr";
@@ -26,14 +26,14 @@ WiFiUDP udp;
 
 IPAddress ServIP(192, 0, 0, 0);
 
-const int8_t BRIDGE_MOTOR_PIN_DIR = 13;
-const int8_t BRIDGE_MOTOR_PIN_PWM = 12;
+const int8_t BRIDGE_MOTOR_PIN_DIR = 13; ///7
+const int8_t BRIDGE_MOTOR_PIN_PWM = 12; //6
 
-const int8_t TROLLEY_MOTOR_PIN_DIR = 2;
-const int8_t TROLLEY_MOTOR_PIN_PWM = 0;
+const int8_t TROLLEY_MOTOR_PIN_DIR = 2; //4
+const int8_t TROLLEY_MOTOR_PIN_PWM =5;  //1
 
-const int8_t WINCH_MOTOR_PIN_DIR = 4;
-const int8_t WINCH_MOTOR_PIN_PWM = 5;
+const int8_t WINCH_MOTOR_PIN_DIR = 4; //2
+const int8_t WINCH_MOTOR_PIN_PWM = 14; //5
 
 GMotor2<DRIVER2WIRE> MOT_Bridge(  BRIDGE_MOTOR_PIN_DIR,   BRIDGE_MOTOR_PIN_PWM);
 GMotor2<DRIVER2WIRE> MOT_Trolley( TROLLEY_MOTOR_PIN_DIR,  TROLLEY_MOTOR_PIN_PWM);
