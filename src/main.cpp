@@ -100,7 +100,7 @@ void loop()
       int len = udp.read(buf, 32);
       IPAddress newIP;
 
-      buf[len] = '\0';      //Парсим
+      buf[len] = '\0'; // Парсим
       GParser data(buf);
       int ints[data.amount()];
       data.parseInts(ints);
@@ -109,7 +109,7 @@ void loop()
       if (newIP.fromString(buf))
       {
         if (strcmp(newIP.toString().c_str(), ServIP.toString().c_str()))
-        {          
+        {
           Serial.print("Server IP changed: ");
           Serial.print(ServIP);
           Serial.print(" -- >> ");
@@ -118,18 +118,21 @@ void loop()
         Serial.println(ServIP);
       }
       else if (ints[0] == 0)
-      { 
+      {
         int Trolley_speed = map(ints[2], 0, 255, -255, 255);
         int Bridge_speed = map(ints[3], 0, 255, -255, 255);
         int Winch_speed = map(ints[4], 0, 255, -255, 255);
-        if (Trolley_speed==-1){
-          Trolley_speed=0;
+        if (Trolley_speed == -1)
+        {
+          Trolley_speed = 0;
         }
-        if (Bridge_speed==-1){
-          Bridge_speed=0;
+        if (Bridge_speed == -1)
+        {
+          Bridge_speed = 0;
         }
-        if (Winch_speed==-1){
-          Winch_speed=0;
+        if (Winch_speed == -1)
+        {
+          Winch_speed = 0;
         }
         MOT_Trolley.setSpeed(Trolley_speed);
         MOT_Bridge.setSpeed(Bridge_speed);
@@ -147,5 +150,5 @@ void loop()
     udp.beginPacket(ServIP, port);
     udp.printf(buf);
     udp.endPacket();
-  } 
+  }
 }
