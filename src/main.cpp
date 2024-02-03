@@ -59,12 +59,9 @@ void setup()
   MOT_Bridge.reverse(1);     // реверс
   MOT_Bridge.setDeadtime(1); // deadtime
 
-
   MOT_Trolley.setMinDuty(100); // мин. ШИМ
   MOT_Trolley.reverse(1);     // реверс
-  MOT_Trolley.setDeadtime(1); // deadtime
-
-  
+  MOT_Trolley.setDeadtime(1); // deadtime  
 
   MOT_Winch.setMinDuty(100); // мин. ШИМ
   MOT_Winch.reverse(1);     // реверс
@@ -119,21 +116,10 @@ void loop()
       }
       else if (ints[0] == 0)
       {
-        int Trolley_speed = map(ints[2], 0, 255, -255, 255);
-        int Bridge_speed = map(ints[3], 0, 255, -255, 255);
-        int Winch_speed = map(ints[4], 0, 255, -255, 255);
-        if (Trolley_speed == -1)
-        {
-          Trolley_speed = 0;
-        }
-        if (Bridge_speed == -1)
-        {
-          Bridge_speed = 0;
-        }
-        if (Winch_speed == -1)
-        {
-          Winch_speed = 0;
-        }
+        int Trolley_speed   = ints[2] == 127 ? 0 : map(ints[2], 0, 255, -255, 255);
+        int Bridge_speed    = ints[3] == 127 ? 0 : map(ints[3], 0, 255, -255, 255);
+        int Winch_speed     = ints[4] == 127 ? 0 : map(ints[4], 0, 255, -255, 255);
+        
         MOT_Trolley.setSpeed(Trolley_speed);
         MOT_Bridge.setSpeed(Bridge_speed);
         MOT_Winch.setSpeed(Winch_speed);
